@@ -1,7 +1,7 @@
 plugins {
     application
-    id("org.jetbrains.kotlin.jvm").version("1.9.25")
-    id("org.owasp.dependencycheck") version "latest.release"
+    id("org.jetbrains.kotlin.jvm").version("1.7.20")
+    id("org.owasp.dependencycheck") version "7.0.4.1"
 }
 
 dependencyCheck {
@@ -32,7 +32,9 @@ configurations.all {
 val recipeConf = configurations.create("recipe")
 
 // Either `latest.release` or `latest.integration`
-val rewriteVersion = "latest.release"
+val rewriteVersion = "3.4.0-SNAPSHOT"
+val gepardecVersion = "1.0.1-SNAPSHOT"
+val gepardecVersion2 = "1.0-SNAPSHOT"
 
 // Used to determine what type of changelog to build up.
 //   * "release"  : When making a changelog for larger releases of OpenRewrite
@@ -45,7 +47,7 @@ val diffFileName = "desjardins"
 
 dependencies {
     implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
-    implementation(platform("io.moderne.recipe:moderne-recipe-bom:$rewriteVersion"))
+    implementation(platform("org.openrewrite.recipe:rewrite-recipe-bom:$rewriteVersion"))
 
     implementation("info.picocli:picocli:latest.release")
     implementation("org.openrewrite:rewrite-core")
@@ -54,75 +56,77 @@ dependencies {
     implementation("io.github.java-diff-utils:java-diff-utils:4.11")
     runtimeOnly("org.slf4j:slf4j-simple:1.7.30")
 
-    testImplementation("org.junit.jupiter:junit-jupiter:latest.release")
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:latest.release")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:latest.release")
 
-    "recipe"(platform("io.moderne.recipe:moderne-recipe-bom:$rewriteVersion"))
+//    "recipe"(platform("org.openrewrite.recipe:rewrite-recipe-bom:$rewriteVersion"))
+//    "recipe"(platform("io.moderne.recipe:moderne-recipe-bom:$rewriteVersion"))
 
-    "recipe"("org.openrewrite:rewrite-core")
-    "recipe"("org.openrewrite:rewrite-gradle")
-    "recipe"("org.openrewrite:rewrite-groovy")
-    "recipe"("org.openrewrite:rewrite-hcl")
-    "recipe"("org.openrewrite:rewrite-java")
-    "recipe"("org.openrewrite:rewrite-json")
-    "recipe"("org.openrewrite:rewrite-maven")
-    "recipe"("org.openrewrite:rewrite-properties")
-    "recipe"("org.openrewrite:rewrite-protobuf")
-    "recipe"("org.openrewrite:rewrite-toml")
-    "recipe"("org.openrewrite:rewrite-xml")
-    "recipe"("org.openrewrite:rewrite-yaml")
+//    "recipe"("org.openrewrite:rewrite-core")
+//    "recipe"("org.openrewrite:rewrite-gradle")
+//    "recipe"("org.openrewrite:rewrite-groovy")
+//    "recipe"("org.openrewrite:rewrite-hcl")
+//    "recipe"("org.openrewrite:rewrite-java")
+//    "recipe"("org.openrewrite:rewrite-json")
+//    "recipe"("org.openrewrite:rewrite-maven")
+//    "recipe"("org.openrewrite:rewrite-properties")
+//    "recipe"("org.openrewrite:rewrite-protobuf")
+//    "recipe"("org.openrewrite:rewrite-toml")
+//    "recipe"("org.openrewrite:rewrite-xml")
+//    "recipe"("org.openrewrite:rewrite-yaml")
 
 // Do not yet show recipes associated with these languages
 //    "recipe"("org.openrewrite:rewrite-csharp")
 //    "recipe"("org.openrewrite:rewrite-javascript")
-    "recipe"("org.openrewrite:rewrite-kotlin")
+//    "recipe"("org.openrewrite:rewrite-kotlin")
 //    "recipe"("org.openrewrite:rewrite-python")
 //    "recipe"("org.openrewrite:rewrite-ruby")
+//
+//    "recipe"("org.openrewrite.recipe:rewrite-all")
+//    "recipe"("org.openrewrite.meta:rewrite-analysis")
+//    "recipe"("org.openrewrite.recipe:rewrite-ai-search")
+//    "recipe"("org.openrewrite.recipe:rewrite-android")
+//    "recipe"("org.openrewrite.recipe:rewrite-apache")
+//    "recipe"("org.openrewrite.recipe:rewrite-circleci")
+//    "recipe"("org.openrewrite.recipe:rewrite-codemods")
+//    "recipe"("org.openrewrite.recipe:rewrite-codemods-ng")
+//    "recipe"("org.openrewrite.recipe:rewrite-compiled-analysis")
+//    "recipe"("org.openrewrite.recipe:rewrite-comprehension")
+//    "recipe"("org.openrewrite.recipe:rewrite-concourse")
+//    "recipe"("org.openrewrite.recipe:rewrite-cucumber-jvm")
+//    "recipe"("org.openrewrite.recipe:rewrite-docker")
+//    "recipe"("org.openrewrite.recipe:rewrite-dotnet")
+//    "recipe"("org.openrewrite.recipe:rewrite-feature-flags")
+//    "recipe"("org.openrewrite.recipe:rewrite-github-actions")
+//    "recipe"("org.openrewrite.recipe:rewrite-gitlab")
+//    "recipe"("org.openrewrite.recipe:rewrite-hibernate")
+//    "recipe"("org.openrewrite.recipe:rewrite-jackson")
+//    "recipe"("org.openrewrite.recipe:rewrite-java-dependencies")
+//    "recipe"("org.openrewrite.recipe:rewrite-java-security")
+//    "recipe"("org.openrewrite.recipe:rewrite-jenkins")
+//    "recipe"("org.openrewrite.recipe:rewrite-kubernetes")
+//    "recipe"("org.openrewrite.recipe:rewrite-liberty")
+//    "recipe"("org.openrewrite.recipe:rewrite-logging-frameworks")
+//    "recipe"("org.openrewrite.recipe:rewrite-micrometer")
+//    "recipe"("org.openrewrite.recipe:rewrite-micronaut")
+    "recipe"("at.gepardec.openrewrite:OpenRewrite-Collection:$gepardecVersion2")
+//    "recipe"("com.gepardec:write-open-rewrite:$gepardecVersion")
+//    "recipe"("org.openrewrite.recipe:rewrite-nodejs")
+//    "recipe"("org.openrewrite.recipe:rewrite-okhttp")
+//    "recipe"("org.openrewrite.recipe:rewrite-openapi")
+//    "recipe"("org.openrewrite.recipe:rewrite-quarkus")
+//    "recipe"("org.openrewrite.recipe:rewrite-reactive-streams")
+//    "recipe"("org.openrewrite.recipe:rewrite-rewrite")
+//    "recipe"("org.openrewrite.recipe:rewrite-spring")
+//    "recipe"("org.openrewrite.recipe:rewrite-sql")
+//    "recipe"("org.openrewrite.recipe:rewrite-static-analysis")
+//    "recipe"("org.openrewrite.recipe:rewrite-struts")
+//    "recipe"("org.openrewrite.recipe:rewrite-terraform")
+//    "recipe"("org.openrewrite.recipe:rewrite-testing-frameworks")
+//    "recipe"("org.openrewrite.recipe:rewrite-third-party")
 
-    "recipe"("org.openrewrite.recipe:rewrite-all")
-    "recipe"("org.openrewrite.meta:rewrite-analysis")
-    "recipe"("org.openrewrite.recipe:rewrite-ai-search")
-    "recipe"("org.openrewrite.recipe:rewrite-android")
-    "recipe"("org.openrewrite.recipe:rewrite-apache")
-    "recipe"("org.openrewrite.recipe:rewrite-circleci")
-    "recipe"("org.openrewrite.recipe:rewrite-codemods")
-    "recipe"("org.openrewrite.recipe:rewrite-codemods-ng")
-    "recipe"("org.openrewrite.recipe:rewrite-compiled-analysis")
-    "recipe"("org.openrewrite.recipe:rewrite-comprehension")
-    "recipe"("org.openrewrite.recipe:rewrite-concourse")
-    "recipe"("org.openrewrite.recipe:rewrite-cucumber-jvm")
-    "recipe"("org.openrewrite.recipe:rewrite-docker")
-    "recipe"("org.openrewrite.recipe:rewrite-dotnet")
-    "recipe"("org.openrewrite.recipe:rewrite-feature-flags")
-    "recipe"("org.openrewrite.recipe:rewrite-github-actions")
-    "recipe"("org.openrewrite.recipe:rewrite-gitlab")
-    "recipe"("org.openrewrite.recipe:rewrite-hibernate")
-    "recipe"("org.openrewrite.recipe:rewrite-jackson")
-    "recipe"("org.openrewrite.recipe:rewrite-java-dependencies")
-    "recipe"("org.openrewrite.recipe:rewrite-java-security")
-    "recipe"("org.openrewrite.recipe:rewrite-jenkins")
-    "recipe"("org.openrewrite.recipe:rewrite-kubernetes")
-    "recipe"("org.openrewrite.recipe:rewrite-liberty")
-    "recipe"("org.openrewrite.recipe:rewrite-logging-frameworks")
-    "recipe"("org.openrewrite.recipe:rewrite-micrometer")
-    "recipe"("org.openrewrite.recipe:rewrite-micronaut")
-    "recipe"("org.openrewrite.recipe:rewrite-migrate-java")
-    "recipe"("org.openrewrite.recipe:rewrite-nodejs")
-    "recipe"("org.openrewrite.recipe:rewrite-okhttp")
-    "recipe"("org.openrewrite.recipe:rewrite-openapi")
-    "recipe"("org.openrewrite.recipe:rewrite-quarkus")
-    "recipe"("org.openrewrite.recipe:rewrite-reactive-streams")
-    "recipe"("org.openrewrite.recipe:rewrite-rewrite")
-    "recipe"("org.openrewrite.recipe:rewrite-spring")
-    "recipe"("org.openrewrite.recipe:rewrite-sql")
-    "recipe"("org.openrewrite.recipe:rewrite-static-analysis")
-    "recipe"("org.openrewrite.recipe:rewrite-struts")
-    "recipe"("org.openrewrite.recipe:rewrite-terraform")
-    "recipe"("org.openrewrite.recipe:rewrite-testing-frameworks")
-    "recipe"("org.openrewrite.recipe:rewrite-third-party")
-
-    "recipe"("io.moderne.recipe:rewrite-hibernate")
-    "recipe"("io.moderne.recipe:rewrite-spring")
+//    "recipe"("io.moderne.recipe:rewrite-hibernate")
+//    "recipe"("io.moderne.recipe:rewrite-spring")
 }
 
 java {
@@ -191,12 +195,12 @@ tasks.register<JavaExec>("latestVersionsMarkdown").configure {
 
     // Additional modules whose versions we want to show, but not (yet) their recipes
     dependencies {
-        "recipe"("org.openrewrite:rewrite-cobol:$rewriteVersion")
-        "recipe"("org.openrewrite:rewrite-csharp:$rewriteVersion")
-        "recipe"("org.openrewrite:rewrite-javascript:$rewriteVersion")
-        "recipe"("org.openrewrite:rewrite-polyglot:$rewriteVersion")
-        "recipe"("org.openrewrite:rewrite-python:$rewriteVersion")
-        "recipe"("org.openrewrite:rewrite-templating:$rewriteVersion")
+//        "recipe"("org.openrewrite:rewrite-cobol:$rewriteVersion")
+//        "recipe"("org.openrewrite:rewrite-csharp:$rewriteVersion")
+//        "recipe"("org.openrewrite:rewrite-javascript:$rewriteVersion")
+//        "recipe"("org.openrewrite:rewrite-polyglot:$rewriteVersion")
+//        "recipe"("org.openrewrite:rewrite-python:$rewriteVersion")
+//        "recipe"("org.openrewrite:rewrite-templating:$rewriteVersion")
     }
 
     val targetDir = layout.buildDirectory.dir("docs").get().asFile
