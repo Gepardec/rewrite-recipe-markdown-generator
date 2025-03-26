@@ -109,7 +109,7 @@ dependencies {
 //    "recipe"("org.openrewrite.recipe:rewrite-logging-frameworks")
 //    "recipe"("org.openrewrite.recipe:rewrite-micrometer")
 //    "recipe"("org.openrewrite.recipe:rewrite-micronaut")
-    "recipe"("at.gepardec.openrewrite:OpenRewrite-Collection:$gepardecVersion2")
+    "recipe"("com.gepardec.openrewrite:OpenRewrite-Collection:$gepardecVersion2")
 //    "recipe"("com.gepardec:write-open-rewrite:$gepardecVersion")
 //    "recipe"("org.openrewrite.recipe:rewrite-nodejs")
 //    "recipe"("org.openrewrite.recipe:rewrite-okhttp")

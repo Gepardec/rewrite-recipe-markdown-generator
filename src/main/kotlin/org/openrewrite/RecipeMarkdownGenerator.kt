@@ -2227,7 +2227,7 @@ $cliSnippet
                         .substring(13)
                         .lowercase(Locale.getDefault())
                 } else {
-                    recipe.name.substring(12).replace("\\.".toRegex(), "/").lowercase(Locale.getDefault())
+                    recipe.name.substring(13).replace("\\.".toRegex(), "/").lowercase(Locale.getDefault())
                 }
             } else if (recipe.name.startsWith("io.moderne")) {
                 recipe.name.substring(11).replace("\\.".toRegex(), "/").lowercase(Locale.getDefault())

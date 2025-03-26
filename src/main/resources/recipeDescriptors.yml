@@ -2,19 +2,17 @@ OpenRewrite-Collection:
   artifactId: "OpenRewrite-Collection"
   version: "1.0-SNAPSHOT"
   markdownRecipeDescriptors:
-    at.gepardec.java.test:
-      name: "at.gepardec.java.test"
-      description: "These recipes help with the Migration to Jakarta EE 10, flagging\
-        \ and updating deprecated methods. But is not right."
-      docLink: "https://docs.openrewrite.org/recipes/at/gepardec/java/test"
+    com.gepardec.java.test:
+      name: "com.gepardec.java.test"
+      description: "This is a Test Recipe"
+      docLink: "https://docs.openrewrite.org/recipes/com/gepardec/java/test"
       options: []
       isImperative: false
       artifactId: "OpenRewrite-Collection"
-    at.gepardec.java.test2:
-      name: "at.gepardec.java.test2"
-      description: "Adds the Apache Software License Version 2.0 to Java source files\
-        \ which are missing a license header."
-      docLink: "https://docs.openrewrite.org/recipes/at/gepardec/java/test2"
+    com.gepardec.java.test2:
+      name: "com.gepardec.java.test2"
+      description: "This is the second Test Recipe"
+      docLink: "https://docs.openrewrite.org/recipes/com/gepardec/java/test2"
       options: []
       isImperative: false
       artifactId: "OpenRewrite-Collection"
